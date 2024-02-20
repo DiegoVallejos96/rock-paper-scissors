@@ -12,7 +12,7 @@ console.log("Welcome players...");
 function playGame(){
     let matchs = 1
 
-        function getPlayerChoice(){
+    function getPlayerChoice(){
         playerSelecction = prompt("rock, paper or scissors...")
         playerSelected = playerSelecction.toLowerCase()
         if (playerSelected == "rock" ) {
@@ -38,21 +38,28 @@ function playGame(){
         }
     }
 
-
+    playerScore = 0
+    computerScore = 0
     
     function playRound(playerSelection, computerSelection) {
         // your code here!
         if (playerSelection == "rock" & computerSelection == "paper"){
+            computerScore ++
             return "You Lose! Paper beats Rock"
         }else if (playerSelection == "paper" & computerSelection == "rock"){
+            playerScore ++
             return "You Win! Paper beats Rock"
         }else if   (playerSelection == "paper" & computerSelection == "scissors"){
+            computerScore ++
             return "You Lose! Scissors beats Paper"
         }else if  (playerSelection == "scissors" & computerSelection == "paper"){
+            playerScore ++
             return "You Win! Scissors beats Paper"
         }else if  (playerSelection == "scissors" & computerSelection == "rock"){
+            computerScore ++
             return "You Lose! Rock beats Scissors"
         }else if  (playerSelection == "rock" & computerSelection == "scissors"){
+            playerScore ++
             return "You Win! Rock beats Scissors"
         }else if (playerSelection == computerSelection){
             return "Tie"
@@ -61,9 +68,9 @@ function playGame(){
             return "ERROR"
         }  
     }
-
-
     
+    
+
     while (matchs <= 5){
         console.log("Match " + matchs + "!");
         const playerSelection = getPlayerChoice();
@@ -71,10 +78,20 @@ function playGame(){
         const computerSelection = getComputerChoice();
         console.log("Computer chose " + computerSelection);
         console.log(playRound(playerSelection, computerSelection));
+        console.log("Scores = " + "You " + playerScore + " /" + " Computer " + computerScore + ".");
         matchs++
     }
 
-
+    while (matchs = 5){
+        if (playerScore < computerScore){
+            console.log("COMPUTER WIN!!!");
+            break
+        }else if (playerScore > computerScore){
+            console.log("YOU WIN!!!");
+            break
+        }
+        
+    }
 }
 
 playGame()
