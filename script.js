@@ -1,14 +1,5 @@
 console.log("Welcome players...");
 
-
-
-
-
-
-
-  
-
-
 function playGame(){
     let matchs = 1
 
@@ -68,8 +59,6 @@ function playGame(){
             return "ERROR"
         }  
     }
-    
-    
 
     while (matchs <= 5){
         console.log("Match " + matchs + "!");
@@ -95,4 +84,3 @@ function playGame(){
 }
 
 playGame()
-
