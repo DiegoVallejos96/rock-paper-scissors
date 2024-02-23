@@ -1,86 +1,143 @@
 console.log("Welcome players...");
 
-function playGame(){
-    let matchs = 1
+const div = document.querySelector('div')
+const piedra = document.createElement('button')
+piedra.setAttribute('id','rockBtn')
+piedra.textContent = 'rock';
+div.appendChild(piedra)
+const papel = document.createElement('button')
+papel.setAttribute('id','paperBtn')
+papel.textContent = 'paper';
+div.appendChild(papel)
+const tijera = document.createElement('button')
+tijera.setAttribute('id','scissorsBtn')
+tijera.textContent = 'scissors';
+div.appendChild(tijera)
 
-    function getPlayerChoice(){
-        playerSelecction = prompt("rock, paper or scissors...")
-        playerSelected = playerSelecction.toLowerCase()
-        if (playerSelected == "rock" ) {
-            return playerSelected
-        }else if (playerSelected == "paper" ){
-            return playerSelected
-        }else if (playerSelected == "scissors" ){
-            return playerSelected
-        }else {
-            return prompt("only can select rock, paper or scissors...")
-        }
-         
-    }
-    
-    function getComputerChoice () {
-        optRandom = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
-        if (optRandom == 1){
-            return "rock"
-        }else if (optRandom == 2){
-            return "paper"
-        }else if (optRandom == 3){
-            return "scissors"
-        }
-    }
+const partidos = document.createElement('span')
+partidos.setAttribute('class','matchs')
+let matchs = 0
 
-    playerScore = 0
-    computerScore = 0
-    
-    function playRound(playerSelection, computerSelection) {
-        // your code here!
-        if (playerSelection == "rock" & computerSelection == "paper"){
-            computerScore ++
-            return "You Lose! Paper beats Rock"
-        }else if (playerSelection == "paper" & computerSelection == "rock"){
-            playerScore ++
-            return "You Win! Paper beats Rock"
-        }else if   (playerSelection == "paper" & computerSelection == "scissors"){
-            computerScore ++
-            return "You Lose! Scissors beats Paper"
-        }else if  (playerSelection == "scissors" & computerSelection == "paper"){
-            playerScore ++
-            return "You Win! Scissors beats Paper"
-        }else if  (playerSelection == "scissors" & computerSelection == "rock"){
-            computerScore ++
-            return "You Lose! Rock beats Scissors"
-        }else if  (playerSelection == "rock" & computerSelection == "scissors"){
-            playerScore ++
-            return "You Win! Rock beats Scissors"
-        }else if (playerSelection == computerSelection){
-            return "Tie"
-        }
-        else {
-            return "ERROR"
-        }  
-    }
+const puntosPlayer = document.createElement('span')
+puntosPlayer.setAttribute('class','puntosPlayer')
+let playerScore = 0
 
-    while (matchs <= 5){
-        console.log("Match " + matchs + "!");
-        const playerSelection = getPlayerChoice();
-        console.log("You went for " + playerSelection)
-        const computerSelection = getComputerChoice();
-        console.log("Computer chose " + computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("Scores = " + "You " + playerScore + " /" + " Computer " + computerScore + ".");
-        matchs++
-    }
+const puntosCompu = document.createElement('span')
+puntosCompu.setAttribute('class','puntosCompu')
+let computerScore = 0
 
-    while (matchs = 5){
-        if (playerScore < computerScore){
-            console.log("COMPUTER WIN!!!");
-            break
-        }else if (playerScore > computerScore){
-            console.log("YOU WIN!!!");
-            break
-        }
-        
+
+function getComputerChoice () {
+    optRandom = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+    if (optRandom == 1){
+        return "rock"
+    }else if (optRandom == 2){
+        return "paper"
+    }else if (optRandom == 3){
+        return "scissors"
     }
 }
 
-playGame()
+function playRound(playerSelection, computerSelection) {
+    // your code here!
+    if (playerSelection == "rock" & computerSelection == "paper"){
+        computerScore ++
+        matchs++
+        return "You Lose! Paper beats Rock"
+    }else if (playerSelection == "paper" & computerSelection == "rock"){
+        playerScore ++
+        matchs++
+        return "You Win! Paper beats Rock"
+    }else if   (playerSelection == "paper" & computerSelection == "scissors"){
+        computerScore ++
+        matchs++
+        return "You Lose! Scissors beats Paper"
+    }else if  (playerSelection == "scissors" & computerSelection == "paper"){
+        playerScore ++
+        matchs++
+        return "You Win! Scissors beats Paper"
+    }else if  (playerSelection == "scissors" & computerSelection == "rock"){
+        computerScore ++
+        matchs++
+        return "You Lose! Rock beats Scissors"
+    }else if  (playerSelection == "rock" & computerSelection == "scissors"){
+        playerScore ++
+        matchs++
+        return "You Win! Rock beats Scissors"
+    }else if (playerSelection == computerSelection){
+        matchs++
+        return "Tie"
+        
+    }
+    else {
+        return "ERROR"
+    }  
+    
+
+}
+        
+piedra.addEventListener('click', () =>{
+    const playerSelected = "rock"
+    const computerSelection = getComputerChoice();
+    console.log(playerSelected, computerSelection);
+    console.log(playRound(playerSelected,computerSelection));
+    console.log(matchs);
+    div.appendChild(partidos)
+    partidos.textContent = "Match number =" + matchs;
+    div.appendChild(puntosCompu)
+    puntosCompu.textContent = `Computer points = ${computerScore}`;
+    div.appendChild(puntosPlayer)
+    puntosPlayer.textContent = `Player points = ${playerScore}`;
+    matchsCounter()
+
+})
+
+papel.addEventListener('click', () =>{
+    const playerSelected = "paper"
+    const computerSelection = getComputerChoice();
+    console.log(playerSelected, computerSelection);
+    console.log(playRound(playerSelected,computerSelection));
+    console.log(matchs);
+    div.appendChild(partidos)
+    partidos.textContent = "Match number =" + matchs;
+    div.appendChild(puntosCompu)
+    puntosCompu.textContent = `Computer points = ${computerScore}`;
+    div.appendChild(puntosPlayer)
+    puntosPlayer.textContent = `Player points = ${playerScore}`;
+    matchsCounter()
+
+})
+
+tijera.addEventListener('click', () =>{
+    const playerSelected = "scissors"
+    const computerSelection = getComputerChoice();
+    console.log(playerSelected, computerSelection);
+    console.log(playRound(playerSelected,computerSelection));
+    console.log(matchs);
+    div.appendChild(partidos)
+    partidos.textContent = "Match number =" + matchs;
+    div.appendChild(puntosCompu)
+    puntosCompu.textContent = `Computer points = ${computerScore}`;
+    div.appendChild(puntosPlayer)
+    puntosPlayer.textContent = `Player points = ${playerScore}`;
+    matchsCounter()
+})
+
+function matchsCounter(){
+    if (matchs == 5 && computerScore < playerScore){
+        alert("Winner is...YOU!!!")
+        computerScore = 0
+        playerScore = 0
+        matchs = 0
+    }else if (matchs == 5 && computerScore > playerScore){
+        alert("Winner is...COMPUTER!!!")
+        computerScore = 0
+        playerScore = 0
+        matchs = 0
+    }else if (matchs == 5 && computerScore === playerScore){
+        alert("TIE!!! No winners...")
+        computerScore = 0
+        playerScore = 0
+        matchs = 0
+    }
+}
